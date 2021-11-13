@@ -1,0 +1,13 @@
+docker ps
+
+docker exec -ti  chicago_transportation_kafka0_1 kafka-topics --list --zookeeper zookeeper:2181
+
+docker exec -ti chicago_transportation_kafka0_1 kafka-console-consumer --topic topic_kafka_connector_stations --from-beginning --bootstrap-server localhost:9092
+docker exec -ti chicago_transportation_kafka0_1 kafka-console-consumer --topic TURNSTILE_SUMMARY --from-beginning --bootstrap-server localhost:9092
+docker exec -ti chicago_transportation_kafka0_1 kafka-console-consumer --topic org.chicago.cta.weather.v1 --from-beginning --bootstrap-server localhost:9092
+docker exec -ti chicago_transportation_kafka0_1 kafka-console-consumer --topic org.chicago.cta.stations.table.v1 --from-beginning --bootstrap-server localhost:9092
+docker exec -ti chicago_transportation_kafka0_1 kafka-console-consumer --topic "^org.chicago.cta.station.arrivals." --from-beginning --bootstrap-server localhost:9092
+
+
+
+docker exec -ti  chicago_transportation_kafka0_1 kafka-topics --delete --topic "TURNSTILE_SUMMARY" --zookeeper zookeeper:2181
