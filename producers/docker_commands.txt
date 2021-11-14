@@ -11,3 +11,5 @@ docker exec -ti chicago_transportation_kafka0_1 kafka-console-consumer --topic "
 
 
 docker exec -ti  chicago_transportation_kafka0_1 kafka-topics --delete --topic "TURNSTILE_SUMMARY" --zookeeper zookeeper:2181
+
+docker exec -ti  chicago_transportation_kafka0_1 kafka-topics --delete --topic "org.chicago.cta.weather.v1" --zookeeper zookeeper:2181

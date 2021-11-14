@@ -19,7 +19,6 @@ class Weather:
         try:
             logger.info("processing weather data")
             value = message.value()
-            value = json.loads(value)
             self.temperature = value["temperature"]
             self.status = value["status"]
         except Exception as e:

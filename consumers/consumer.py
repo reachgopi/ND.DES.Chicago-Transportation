@@ -35,7 +35,7 @@ class KafkaConsumer:
             "bootstrap.servers": "PLAINTEXT://localhost:9092",
             "group.id":f"{self.topic_name_pattern}",
             'default.topic.config': {
-                'auto.offset.reset': 'earliest',
+                'auto.offset.reset': 'earliest' if offset_earliest else 'latest'
             }
         }
 

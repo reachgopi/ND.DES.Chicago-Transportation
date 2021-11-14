@@ -68,9 +68,9 @@ class Weather(Producer):
         self._set_weather(month)
 
         headers = {
-            "Content-Type": "application/vnd.kafka.json.v2+json"
+            "Content-Type": "application/vnd.kafka.avro.v2+json"
         }
-        epoch_time = datetime.now().strftime('%s')
+        #epoch_time = datetime.now().strftime('%s')
         resp = requests.post(
              f"{Weather.rest_proxy_url}/topics/{self.topic_name}",
              headers=headers,
@@ -78,7 +78,7 @@ class Weather(Producer):
                 {
                     "value_schema": json.dumps(Weather.value_schema),
                     "key_schema": json.dumps(Weather.key_schema),
-                    "records": [{"key":epoch_time,"value": {"temperature":self.temp, "status":self.status.name}}]
+                    "records": [{"key":{"timestamp": self.time_millis()},"value": {"temperature":self.temp, "status":self.status.name}}]
                 }
             ),
         )
